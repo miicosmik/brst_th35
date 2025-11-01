@@ -61,7 +61,7 @@ class AdminToolsCog(commands.Cog):
         
         embed = discord.Embed(
             description=mensagem,
-            color=discord.Color.from_str("#2ECC71")
+            color=discord.Color.from_str("#00b4d8")
         )
 
         send_kwargs = {'embed': embed}
