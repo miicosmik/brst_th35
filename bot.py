@@ -43,7 +43,7 @@ async def on_message(message):
 async def main():
     # await bot.load_extension("profile.main")
     # await bot.load_extension("roles.main")
-    # await bot.load_extension("anonymous_fax.main")
+    await bot.load_extension("anonymous_fax.main")
     # await bot.load_extension("interactions.main")
     await bot.load_extension("admin_tools.main")
     # await bot.load_extension("dynamic_commands.main")
