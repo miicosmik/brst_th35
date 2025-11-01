@@ -3,7 +3,7 @@ import random
 from discord.ext import commands
 
 from .gifs import *
-from profile import profile_system
+from prof import profile_system
 
 class InteractionCog(commands.Cog):
     def __init__(self, bot: commands.Bot):
