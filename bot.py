@@ -46,7 +46,7 @@ async def main():
     await bot.load_extension("anonymous_fax.main")
     # await bot.load_extension("interactions.main")
     await bot.load_extension("admin_tools.main")
-    # await bot.load_extension("dynamic_commands.main")
+    await bot.load_extension("dynamic_commands.main")
     # await bot.load_extension("reaction_roles.main")
 
     await bot.start(TOKEN)
