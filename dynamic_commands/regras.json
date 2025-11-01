@@ -1,0 +1,38 @@
+[
+{
+  "ativador": {
+    "tipo": "password",
+    "valor": "bugs satanicos"
+  },
+  "condicoes": [],
+  "efeito": {
+    "tipo": "mensagem",
+    "conteudo": "https://youtu.be/aBOW0HqIpwM?si=jbxOInQVc-u9S-T2"
+  }
+},
+
+{
+  "ativador": {
+    "tipo": "password",
+    "valor": "cala boca Eli"
+  },
+  "condicoes": [],
+  "efeito": {
+    "tipo": "mensagem",
+    "conteudo": "Caralho, vai tomar no cú, chega lá na piranha da tua mãe e manda ela calar a boca."
+  }
+},
+  
+{
+  "ativador": {
+    "tipo": "password",
+    "valor": "meu Deus do céu não sobrou nada"
+  },
+  "condicoes": [],
+  "efeito": {
+    "tipo": "mensagem",
+    "conteudo": "https://www.youtube.com/watch?v=4cc0wimOwA8"
+  }
+}
+
+]
