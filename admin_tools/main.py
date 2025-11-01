@@ -1,13 +1,12 @@
 import discord
 from discord.ext import commands
 
-CARGO_PERMITIDO_NOME = "Furry" 
+CARGO_PERMITIDO_ID = 1362148726210297966
 
 class AdminToolsCog(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
         print("[OK] Modulo de Admin")
-
 
     async def cog_command_error(self, ctx: commands.Context, error: commands.CommandError):
         if isinstance(error, commands.MissingRole):
@@ -15,15 +14,27 @@ class AdminToolsCog(commands.Cog):
                 await ctx.message.delete()
             except discord.Forbidden:
                 pass
-            await ctx.send(f"{ctx.author.mention}, Heyyy, você não trabalha aqui para usar esse comando! Quer tanto um emprego assim? Fica no meu lugar então!  ( `ε´ )", ephemeral=True)
+            await ctx.send(
+                f"{ctx.author.mention}, Heyyy, você não trabalha aqui para usar esse comando! Quer tanto um emprego assim? Fica no meu lugar então!  ( `ε´ )",
+                ephemeral=True
+            )
         else:
             print(f"[X] Erro nesse comando: {error}")
+
+    # --- Verificação de moderação ---
+    async def tem_permissao(self, ctx: commands.Context) -> bool:
+        if ctx.author.id == ctx.guild.owner_id:
+            return True
+
+        return any(role.id == CARGO_PERMITIDO_ID for role in ctx.author.roles)
 
     # --- Comandos ---
 
     @commands.command(name="dizer", aliases=['d'])
-    @commands.has_role(CARGO_PERMITIDO_NOME)
     async def say_command(self, ctx: commands.Context, *, mensagem: str):
+        if not await self.tem_permissao(ctx):
+            await ctx.send(f"{ctx.author.mention}, Heyyy, você não trabalha aqui para usar esse comando!  ( `ε´ )", ephemeral=True)
+            return
         
         send_kwargs = {}
 
@@ -43,8 +54,10 @@ class AdminToolsCog(commands.Cog):
 
 
     @commands.command(name="embed", aliases=['e'])
-    @commands.has_role(CARGO_PERMITIDO_NOME)
     async def embed_command(self, ctx: commands.Context, *, mensagem: str):
+        if not await self.tem_permissao(ctx):
+            await ctx.send(f"{ctx.author.mention}, Heyyy, você não trabalha aqui para usar esse comando!  ( `ε´ )", ephemeral=True)
+            return
         
         embed = discord.Embed(
             description=mensagem,
@@ -71,12 +84,14 @@ class AdminToolsCog(commands.Cog):
 
 
     @commands.command(name="editar", aliases=['edit'])
-    @commands.has_role(CARGO_PERMITIDO_NOME)
     async def edit_command(self, ctx: commands.Context, *, novo_conteudo: str):
+        if not await self.tem_permissao(ctx):
+            await ctx.send(f"{ctx.author.mention}, Heyyy, você não trabalha aqui para usar esse comando!  ( `ε´ )", ephemeral=True)
+            return
 
         if ctx.message.reference is None:
             await ctx.message.delete()
-            await ctx.send(f"{ctx.author.mention}, Heyyy, você precisa respoder a mensagem para eu saber o que editar! aiai, boboca... (>_<)", ephemeral=True)
+            await ctx.send(f"{ctx.author.mention}, Heyyy, você precisa responder a mensagem para eu saber o que editar! aiai, boboca... (>_<)", ephemeral=True)
             return
 
         try:
