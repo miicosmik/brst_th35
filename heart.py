@@ -2,7 +2,7 @@ from aiohttp import web
 import asyncio
 
 async def handle(request):
-    return web.Response(text="Bot está vivo 🐢")
+    return web.Response(text="Viva!")
 
 async def start_web_server():
     app = web.Application()
