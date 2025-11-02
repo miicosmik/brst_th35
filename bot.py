@@ -3,6 +3,7 @@ from discord.ext import commands
 import asyncio
 
 from auth import TOKEN, GUILD_ID
+from heart import start_web_server
 
 intents = discord.Intents.default()
 intents.messages = True
@@ -48,7 +49,8 @@ async def main():
     await bot.load_extension("admin_tools.main")
     await bot.load_extension("dynamic_commands.main")
     # await bot.load_extension("reaction_roles.main")
-
+    
+    await start_web_server()
     await bot.start(TOKEN)
 
 if __name__ == "__main__":
